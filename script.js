@@ -1,11 +1,11 @@
-window.onload = function() {
+window.onload = function () {
     loadBlogs();
 };
 
 function loadBlogs() {
     const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
     const blogList = document.getElementById('blogList');
-    blogList.innerHTML = ''; 
+    blogList.innerHTML = '';
 
     blogs.forEach((blog, index) => {
         const li = document.createElement('li');
@@ -24,7 +24,7 @@ function showBlogContent(index) {
     document.getElementById('blogContent').innerText = blog.content;
 
     blog.viewCount = (blog.viewCount || 0) + 1;
-    blogs[index] = blog;  
+    blogs[index] = blog;
     localStorage.setItem('blogs', JSON.stringify(blogs));
 
     loadBlogs();
@@ -43,13 +43,13 @@ function createBlog() {
         const newBlog = {
             title: newTitle,
             content: newContent,
-            viewCount: 0 
+            viewCount: 0
         };
         blogs.push(newBlog);
         localStorage.setItem('blogs', JSON.stringify(blogs));
 
         loadBlogs();
-        document.getElementById('createForm').style.display = 'none'; 
+        document.getElementById('createForm').style.display = 'none';
     }
 }
 
@@ -73,14 +73,14 @@ function updateBlog() {
         blogs[index] = {
             title: updateTitle,
             content: updateContent,
-            viewCount: blogs[index].viewCount || 0  
+            viewCount: blogs[index].viewCount || 0
         };
         localStorage.setItem('blogs', JSON.stringify(blogs));
 
         document.getElementById('blogTitle').innerText = updateTitle;
         document.getElementById('blogContent').innerText = updateContent;
 
-        loadBlogs(); 
+        loadBlogs();
         document.getElementById('updateForm').style.display = 'none';
     }
 }
